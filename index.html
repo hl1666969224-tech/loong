@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>中国五冶集团 - 校园招聘/社会招聘</title>
+    <style>
+        /* --- CSS 样式区域：负责网页的“可爱”和“明亮”风格 --- */
+        :root {
+            --primary-color: #4facfe; /* 明亮蓝 */
+            --secondary-color: #00f2fe; /* 青色渐变 */
+            --btn-1-color: #FF9A9E; /* 登记按钮 - 樱花粉 */
+            --btn-2-color: #a18cd1; /* 下载按钮 - 梦幻紫 */
+            --btn-3-color: #fad0c4; /* 祝福按钮 - 蜜桃橙 */
+            --text-color: #444;
+        }
+
+        body {
+            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); /* 清新背景 */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 40px 30px;
+            border-radius: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            border: 4px solid #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 顶部装饰圆点，增加可爱感 */
+        .decoration {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 230, 230, 0.6);
+            border-radius: 50%;
+            top: -50px;
+            left: -50px;
+            z-index: 0;
+        }
+
+        .logo-area {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 5px;
+            font-weight: 800;
+        }
+
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+
+        /* 按钮通用样式 */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            display: block;
+            text-decoration: none;
+            padding: 18px;
+            border-radius: 50px; /* 超大圆角 */
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹性动画 */
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* 个性化按钮颜色 */
+        .btn-register {
+            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+        }
+
+        .btn-download {
+            background: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 100%);
+        }
+
+        .btn-lucky {
+            background: linear-gradient(to right, #f6d365 0%, #fda085 100%);
+        }
+
+        /* 弹窗样式 */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 300px;
+            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .blessing-text {
+            font-size: 20px;
+            color: #ff6b6b;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        @keyframes popIn {
+            from { transform: scale(0); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .close-btn {
+            background: #eee;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="decoration"></div>
+        
+        <div class="logo-area">
+            <h1>中国五冶集团</h1>
+            <p class="subtitle">✨ 欢迎加入我们，共筑美好未来 ✨</p>
+        </div>
+
+        <div class="btn-group">
+            <!-- 入口 1：信息登记 (直接链接) -->
+            <a href="https://docs.qq.com/sheet/DYnd4cWFoTW5BUlhO?u=d1fdbb2e863448e0b5903670f6c85806&no_promotion=1&tab=BB08J2" target="_blank" class="btn btn-register">
+                📝 信息登记入口
+            </a>
+
+            <!-- 入口 2：下载模板 (请注意下方说明) -->
+            <!-- 这里假设你的模板文件名为 template.docx，请确保文件名一致 -->
+            <a href="./应聘信息登记表.docx" download="五冶集团应聘信息登记表.docx" class="btn btn-download">
+                📥 下载应聘登记表
+            </a>
+
+            <!-- 入口 3：求职祝福 (点击触发 JS) -->
+            <button class="btn btn-lucky" onclick="showBlessing()">
+                🍀 抽取求职好运签
+            </button>
+        </div>
+    </div>
+
+    <!-- 祝福语弹窗 -->
+    <div class="modal-overlay" id="modal">
+        <div class="modal">
+            <h3>✨ 你的专属好运 ✨</h3>
+            <p class="blessing-text" id="blessingContent"></p>
+            <button class="close-btn" onclick="closeModal()">收下祝福</button>
+        </div>
+    </div>
+
+    <script>
+        // --- JavaScript 区域：生成随机祝福语 ---
+        const blessings = [
+            "offer 拿到手软！💼",
+            "面试一把过，入职在即！🚀",
+            "才华横溢，HR 对你一见钟情！❤️",
+            "前程似锦，未来可期！🌟",
+            "薪资满意，团队给力！💰",
+            "你是最棒的，自信登场！✨",
+            "好运正在派送中...请签收！🚚",
+            "五冶集团欢迎闪闪发光的你！🏗️"
+        ];
+
+        function showBlessing() {
+            const randomIndex = Math.floor(Math.random() * blessings.length);
+            document.getElementById('blessingContent').innerText = blessings[randomIndex];
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
