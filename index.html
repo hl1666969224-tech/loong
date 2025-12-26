@@ -4,20 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中国五冶集团 - 校园招聘/社会招聘</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        /* --- CSS 样式区域：负责网页的“可爱”和“明亮”风格 --- */
         :root {
-            --primary-color: #4facfe; /* 明亮蓝 */
-            --secondary-color: #00f2fe; /* 青色渐变 */
-            --btn-1-color: #FF9A9E; /* 登记按钮 - 樱花粉 */
-            --btn-2-color: #a18cd1; /* 下载按钮 - 梦幻紫 */
-            --btn-3-color: #fad0c4; /* 祝福按钮 - 蜜桃橙 */
+            --primary-color: #4facfe;
+            --secondary-color: #00f2fe;
+            --btn-1-color: #FF9A9E;
+            --btn-2-color: #a18cd1;
+            --btn-3-color: #fad0c4;
             --text-color: #444;
         }
-
         body {
             font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
-            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%); /* 清新背景 */
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
@@ -25,8 +24,26 @@
             align-items: center;
             margin: 0;
             padding: 20px;
+            overflow: hidden;
+            position: relative;
         }
-
+        /* 新增：浮动粒子背景（求职元素图案） */
+        .particles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .particle {
+            position: absolute;
+            font-size: 24px;
+            opacity: 0.6;
+            animation: float 15s infinite linear;
+        }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
         .container {
             background: rgba(255, 255, 255, 0.95);
             padding: 40px 30px;
@@ -37,10 +54,9 @@
             width: 100%;
             border: 4px solid #fff;
             position: relative;
+            z-index: 1;
             overflow: hidden;
         }
-
-        /* 顶部装饰圆点，增加可爱感 */
         .decoration {
             position: absolute;
             width: 150px;
@@ -51,27 +67,22 @@
             left: -50px;
             z-index: 0;
         }
-
         .logo-area {
             position: relative;
             z-index: 1;
             margin-bottom: 30px;
         }
-
         h1 {
             color: #333;
             font-size: 24px;
             margin-bottom: 5px;
             font-weight: 800;
         }
-
         .subtitle {
             color: #666;
             font-size: 14px;
             margin-bottom: 30px;
         }
-
-        /* 按钮通用样式 */
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -79,122 +90,65 @@
             position: relative;
             z-index: 1;
         }
-
         .btn {
             display: block;
             text-decoration: none;
             padding: 18px;
-            border-radius: 50px; /* 超大圆角 */
+            border-radius: 50px;
             font-size: 18px;
             font-weight: bold;
             color: white;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* 弹性动画 */
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: none;
             cursor: pointer;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             position: relative;
             overflow: hidden;
         }
-
         .btn:hover {
             transform: scale(1.05) translateY(-3px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
-
         .btn:active {
             transform: scale(0.95);
         }
-
-        /* 个性化按钮颜色 */
-        .btn-register {
-            background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
-        }
-
-        .btn-download {
-            background: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 100%);
-        }
-
-        .btn-lucky {
-            background: linear-gradient(to right, #f6d365 0%, #fda085 100%);
-        }
-
-        /* 弹窗样式 */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .modal {
-            background: white;
-            padding: 30px;
-            border-radius: 20px;
-            text-align: center;
-            max-width: 300px;
-            animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .blessing-text {
-            font-size: 20px;
-            color: #ff6b6b;
-            font-weight: bold;
-            margin: 20px 0;
-        }
-
-        @keyframes popIn {
-            from { transform: scale(0); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .close-btn {
-            background: #eee;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 20px;
-            cursor: pointer;
-            color: #555;
-        }
+        .btn-register { background: linear-gradient(45deg, #ff9a9e 0%, #fecfef 99%); }
+        .btn-download { background: linear-gradient(120deg, #a18cd1 0%, #fbc2eb 100%); }
+        .btn-lucky { background: linear-gradient(to right, #f6d365 0%, #fda085 100%); }
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 100; justify-content: center; align-items: center; }
+        .modal { background: white; padding: 30px; border-radius: 20px; text-align: center; max-width: 300px; animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .blessing-text { font-size: 20px; color: #ff6b6b; font-weight: bold; margin: 20px 0; }
+        @keyframes popIn { from { transform: scale(0); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+        .close-btn { background: #eee; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer; color: #555; }
     </style>
 </head>
 <body>
+    <!-- 浮动粒子背景：求职相关图案 -->
+    <div class="particles" id="particles"></div>
 
     <div class="container">
         <div class="decoration"></div>
-        
+       
         <div class="logo-area">
-            <h1>中国五冶集团</h1>
-            <p class="subtitle">✨ 欢迎加入我们，共筑美好未来 ✨</p>
+            <h1>中国五冶集团 💼</h1>
+            <p class="subtitle">✨ 欢迎加入我们，共筑美好未来 🌟🚀</p>
         </div>
-
         <div class="btn-group">
-            <!-- 入口 1：信息登记 (直接链接) -->
             <a href="https://docs.qq.com/sheet/DYnd4cWFoTW5BUlhO?u=d1fdbb2e863448e0b5903670f6c85806&no_promotion=1&tab=BB08J2" target="_blank" class="btn btn-register">
-                📝 信息登记入口
+                📝 信息登记入口 📈
             </a>
-
-            <!-- 入口 2：下载模板 (请注意下方说明) -->
-            <!-- 这里假设你的模板文件名为 template.docx，请确保文件名一致 -->
-            <a href="https://raw.githubusercontent.com/hl1666969224-tech/loong/main/应聘信息登记表.docx" 
-            download="五冶集团应聘信息登记表.docx" 
-            class="btn btn-download">
-            📥 下载应聘登记表
+            <!-- 用你的 raw 链接替换下面这个 -->
+            <a href="https://raw.githubusercontent.com/hl1666969224-tech/loong/main/%E5%BA%94%E8%81%98%E4%BF%A1%E6%81%AF%E7%99%BB%E8%AE%B0%E8%A1%A8.docx" 
+               download="五冶集团应聘信息登记表.docx" 
+               class="btn btn-download">
+                📥 下载应聘登记表 📄
             </a>
-
-            <!-- 入口 3：求职祝福 (点击触发 JS) -->
             <button class="btn btn-lucky" onclick="showBlessing()">
-                🍀 抽取求职好运签
+                🍀 抽取求职好运签 🎉
             </button>
         </div>
     </div>
 
-    <!-- 祝福语弹窗 -->
     <div class="modal-overlay" id="modal">
         <div class="modal">
             <h3>✨ 你的专属好运 ✨</h3>
@@ -204,7 +158,7 @@
     </div>
 
     <script>
-        // --- JavaScript 区域：生成随机祝福语 ---
+        // 随机祝福语
         const blessings = [
             "offer 拿到手软！💼",
             "面试一把过，入职在即！🚀",
@@ -215,15 +169,33 @@
             "好运正在派送中...请签收！🚚",
             "五冶集团欢迎闪闪发光的你！🏗️"
         ];
-
         function showBlessing() {
             const randomIndex = Math.floor(Math.random() * blessings.length);
             document.getElementById('blessingContent').innerText = blessings[randomIndex];
             document.getElementById('modal').style.display = 'flex';
+            // 触发五彩纸屑动画
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff9a9e', '#a18cd1', '#fad0c4', '#4facfe', '#00f2fe']
+            });
         }
-
         function closeModal() {
             document.getElementById('modal').style.display = 'none';
+        }
+
+        // 生成浮动粒子（求职元素）
+        const particlesContainer = document.getElementById('particles');
+        const icons = ['💼', '📈', '🌟', '🚀', '📄', '🎯', '🏆', '💡'];
+        for (let i = 0; i < 30; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            p.textContent = icons[Math.floor(Math.random() * icons.length)];
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.animationDelay = Math.random() * 15 + 's';
+            p.style.animationDuration = 10 + Math.random() * 10 + 's';
+            particlesContainer.appendChild(p);
         }
     </script>
 </body>
