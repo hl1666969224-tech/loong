@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>中国五冶集团 - 校园招聘/社会招聘</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <style>
@@ -12,10 +13,10 @@
             padding: 0;
             height: auto;
             min-height: 100vh;
-            font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+            font-family: 'Exo 2', sans-serif;
             color: #fff;
             overflow-x: hidden;
-            background: #000;
+            background: url('https://images.unsplash.com/photo-1531306728370-e2ebd9b07e3b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed no-repeat; /* 高清梦幻星云背景 */
         }
         #particles-js {
             position: fixed;
@@ -23,7 +24,7 @@
             height: 100%;
             top: 0;
             left: 0;
-            z-index: -1;
+            z-index: 1;
         }
         section {
             min-height: 100vh;
@@ -32,10 +33,11 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 50px 20px;
+            padding: 80px 20px;
             position: relative;
             opacity: 0;
-            transition: opacity 1.5s ease;
+            transition: opacity 1.8s ease;
+            z-index: 2;
         }
         section.visible {
             opacity: 1;
@@ -43,101 +45,103 @@
         .bg-overlay {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
+            background: linear-gradient(135deg, rgba(10,20,60,0.6), rgba(80,10,100,0.4));
             z-index: -1;
         }
-        #section1 .bg-overlay { background-image: url('https://images2.alphacoders.com/805/805177.jpg'); } /* 蓝色星云 */
-        #section2 .bg-overlay { background-image: url('https://images2.alphacoders.com/468/468742.jpg'); } /* 紫色星云 */
-        #section3 .bg-overlay { background-image: url('https://thumbs.dreamstime.com/b/vibrant-abstract-waves-glowing-particles-lines-purple-gold-tones-futuristic-digital-background-energy-421773588.jpg'); } /* 金色能量辉光 */
+        #section1 .bg-overlay { background: linear-gradient(135deg, rgba(0,50,150,0.7), rgba(100,0,200,0.5)); }
+        #section2 .bg-overlay { background: linear-gradient(135deg, rgba(100,0,200,0.7), rgba(200,50,100,0.5)); }
+        #section3 .bg-overlay { background: linear-gradient(135deg, rgba(200,50,100,0.7), rgba(255,150,0,0.5)); }
 
         h1 {
-            font-size: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 60px;
             margin-bottom: 20px;
-            text-shadow: 0 0 20px rgba(100,200,255,0.8);
+            text-shadow: 0 0 40px rgba(100,200,255,0.9);
+            letter-spacing: 4px;
         }
         .subtitle {
-            font-size: 24px;
-            margin-bottom: 60px;
-            opacity: 0.9;
+            font-size: 28px;
+            margin-bottom: 80px;
+            opacity: 0.95;
+            text-shadow: 0 0 15px rgba(255,255,255,0.6);
+            letter-spacing: 2px;
         }
         .btn {
-            padding: 22px 50px;
-            font-size: 22px;
-            font-weight: bold;
+            padding: 25px 60px;
+            font-size: 24px;
+            font-weight: 600;
+            font-family: 'Exo 2', sans-serif;
             border-radius: 50px;
             text-decoration: none;
             color: white;
             background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(15px);
-            border: 3px solid rgba(255,255,255,0.4);
-            box-shadow: 0 0 30px rgba(100,200,255,0.5);
-            transition: all 0.5s ease;
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255,255,255,0.5);
+            box-shadow: 0 0 50px rgba(100,200,255,0.7);
+            transition: all 0.6s ease;
             position: relative;
             overflow: hidden;
-            animation: pulse 2s infinite;
+            animation: neonPulse 2.5s infinite;
+            letter-spacing: 2px;
         }
-        @keyframes pulse {
-            0% { box-shadow: 0 0 30px rgba(100,200,255,0.5); }
-            50% { box-shadow: 0 0 50px rgba(100,200,255,0.8); }
-            100% { box-shadow: 0 0 30px rgba(100,200,255,0.5); }
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 50px rgba(100,200,255,0.7); }
+            50% { box-shadow: 0 0 80px rgba(100,200,255,1); }
+            100% { box-shadow: 0 0 50px rgba(100,200,255,0.7); }
         }
         .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 60px rgba(100,200,255,1);
+            transform: scale(1.15) translateY(-10px);
+            box-shadow: 0 0 100px rgba(100,200,255,1);
         }
-        #section2 .btn { box-shadow: 0 0 30px rgba(161,140,209,0.6); animation: pulse2 2s infinite; }
-        @keyframes pulse2 { 0% { box-shadow: 0 0 30px rgba(161,140,209,0.6); } 50% { box-shadow: 0 0 50px rgba(161,140,209,0.9); } 100% { box-shadow: 0 0 30px rgba(161,140,209,0.6); } }
-        #section3 .btn { box-shadow: 0 0 30px rgba(246,211,101,0.6); animation: pulse3 2s infinite; }
-        @keyframes pulse3 { 0% { box-shadow: 0 0 30px rgba(246,211,101,0.6); } 50% { box-shadow: 0 0 50px rgba(246,211,101,0.9); } 100% { box-shadow: 0 0 30px rgba(246,211,101,0.6); } }
+        #section2 .btn { box-shadow: 0 0 50px rgba(200,100,255,0.8); animation: neonPulse2 2.5s infinite; }
+        @keyframes neonPulse2 { 0% { box-shadow: 0 0 50px rgba(200,100,255,0.8); } 50% { box-shadow: 0 0 80px rgba(200,100,255,1); } 100% { box-shadow: 0 0 50px rgba(200,100,255,0.8); } }
+        #section3 .btn { box-shadow: 0 0 50px rgba(255,200,100,0.8); animation: neonPulse3 2.5s infinite; }
+        @keyframes neonPulse3 { 0% { box-shadow: 0 0 50px rgba(255,200,100,0.8); } 50% { box-shadow: 0 0 80px rgba(255,200,100,1); } 100% { box-shadow: 0 0 50px rgba(255,200,100,0.8); } }
 
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(20px);
             z-index: 100;
             justify-content: center;
             align-items: center;
         }
         .modal {
             background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(40px);
             color: #fff;
-            padding: 50px;
-            border-radius: 30px;
+            padding: 60px;
+            border-radius: 40px;
             text-align: center;
-            max-width: 400px;
-            box-shadow: 0 0 50px rgba(100,200,255,0.8);
-            animation: popIn 0.8s ease;
+            max-width: 450px;
+            box-shadow: 0 0 80px rgba(100,200,255,0.9);
+            animation: popIn 1s ease;
         }
         @keyframes popIn {
-            from { transform: scale(0.3); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
+            from { transform: scale(0.4) rotate(-10deg); opacity: 0; }
+            to { transform: scale(1) rotate(0); opacity: 1; }
         }
     </style>
 </head>
 <body>
     <div id="particles-js"></div>
 
-    <!-- 第一步：信息登记 -->
     <section id="section1" class="visible">
         <div class="bg-overlay"></div>
         <h1>中国五冶集团</h1>
-        <p class="subtitle">✨ 开启你的星际职业之旅 ✨</p>
+        <p class="subtitle">✨ 开启未来职业星际之旅 ✨</p>
         <a href="https://docs.qq.com/sheet/DYnd4cWFoTW5BUlhO?u=d1fdbb2e863448e0b5903670f6c85806&no_promotion=1&tab=BB08J2" 
            target="_blank" class="btn" id="btn1">
-            📝 开始信息登记 → 
+            📝 开始信息登记 →
         </a>
     </section>
 
-    <!-- 第二步：下载登记表（初始隐藏） -->
     <section id="section2">
         <div class="bg-overlay"></div>
         <h1>下一步</h1>
-        <p class="subtitle">🌌 下载应聘登记表，准备起航 🌌</p>
+        <p class="subtitle">🌌 下载登记表，蓄能起飞 🌌</p>
         <a href="https://raw.githubusercontent.com/hl1666969224-tech/loong/main/%E5%BA%94%E8%81%98%E4%BF%A1%E6%81%AF%E7%99%BB%E8%AE%B0%E8%A1%A8.docx" 
            download="五冶集团应聘信息登记表.docx" 
            class="btn" id="btn2">
@@ -145,75 +149,71 @@
         </a>
     </section>
 
-    <!-- 第三步：好运签（初始隐藏） -->
     <section id="section3">
         <div class="bg-overlay"></div>
-        <h1>最终祝福</h1>
-        <p class="subtitle">🌟 抽取你的专属求职星运 🌟</p>
+        <h1>最终仪式</h1>
+        <p class="subtitle">🌟 抽取专属求职星运 🌟</p>
         <button class="btn" id="btn3">
-            🍀 抽取求职好运签
+            🍀 抽取好运签
         </button>
     </section>
 
-    <!-- 好运签弹窗 -->
     <div class="modal-overlay" id="modal">
         <div class="modal">
-            <h3>✨ 你的专属星运 ✨</h3>
-            <p id="blessingContent" style="font-size:26px; margin:30px 0;"></p>
-            <button onclick="closeModal()" style="padding:12px 40px; border:none; border-radius:30px; background:rgba(255,255,255,0.2); color:white; cursor:pointer;">收下祝福</button>
+            <h3 style="font-family: 'Orbitron', sans-serif; font-size:36px;">✨ 你的专属星运 ✨</h3>
+            <p id="blessingContent" style="font-size:28px; margin:40px 0;"></p>
+            <button onclick="closeModal()" style="padding:15px 50px; border:none; border-radius:50px; background:rgba(255,255,255,0.2); color:white; cursor:pointer; font-size:20px;">收下祝福</button>
         </div>
     </div>
 
     <script>
-        // Particles.js - 鼠标互动粒子（repulse 排开效果）
+        // 梦幻多彩粒子 + 超强鼠标互动
         particlesJS('particles-js', {
             particles: {
-                number: { value: 100 },
-                color: { value: '#ffffff' },
+                number: { value: 150 },
+                color: { value: ['#ffffff', '#a18cd1', '#fad0c4', '#4facfe', '#ff9a9e', '#00f2fe'] },
                 shape: { type: 'circle' },
-                opacity: { value: 0.6, random: true },
-                size: { value: 4, random: true },
-                line_linked: { enable: true, distance: 120, color: '#ffffff', opacity: 0.3, width: 1 },
-                move: { enable: true, speed: 1.5 }
+                opacity: { value: 0.8, random: true },
+                size: { value: 6, random: true },
+                line_linked: { enable: true, distance: 180, color: '#ffffff', opacity: 0.4, width: 1.5 },
+                move: { enable: true, speed: 2.5 }
             },
             interactivity: {
                 detect_on: 'window',
                 events: {
-                    onhover: { enable: true, mode: 'repulse' }, // 鼠标靠近排开
+                    onhover: { enable: true, mode: 'repulse' },
                     onclick: { enable: true, mode: 'push' }
                 },
-                modes: { repulse: { distance: 150, duration: 0.8 } }
+                modes: { repulse: { distance: 250, duration: 1.2 } }
             }
         });
 
-        // 递进逻辑
-        document.getElementById('btn1').addEventListener('click', function(e) {
-            // 不阻止默认（打开腾讯文档）
+        // 递进滚动
+        document.getElementById('btn1').addEventListener('click', () => {
             setTimeout(() => {
                 document.getElementById('section2').classList.add('visible');
                 document.getElementById('section2').scrollIntoView({ behavior: 'smooth' });
-            }, 500); // 延迟一点确保用户看到
+            }, 600);
         });
 
-        document.getElementById('btn2').addEventListener('click', function(e) {
-            // 下载会自动触发
+        document.getElementById('btn2').addEventListener('click', () => {
             setTimeout(() => {
                 document.getElementById('section3').classList.add('visible');
                 document.getElementById('section3').scrollIntoView({ behavior: 'smooth' });
             }, 800);
         });
 
-        // 好运签
+        // 好运签 + 超级纸屑
         const blessings = [
             "offer 拿到手软！💼", "面试一把过，入职在即！🚀", "才华横溢，HR 一见钟情！❤️",
             "前程似锦，未来可期！🌟", "薪资满意，团队给力！💰", "你是最棒的，自信登场！✨",
             "好运正在派送中...请签收！🚚", "五冶集团欢迎闪闪发光的你！🏗️"
         ];
-        document.getElementById('btn3').addEventListener('click', function() {
+        document.getElementById('btn3').addEventListener('click', () => {
             const random = blessings[Math.floor(Math.random() * blessings.length)];
             document.getElementById('blessingContent').innerText = random;
             document.getElementById('modal').style.display = 'flex';
-            confetti({ particleCount: 250, spread: 90, origin: { y: 0.6 }, colors: ['#a18cd1', '#fad0c4', '#4facfe', '#ff9a9e'] });
+            confetti({ particleCount: 400, spread: 120, origin: { y: 0.5 }, colors: ['#a18cd1', '#fad0c4', '#4facfe', '#ff9a9e', '#ffffff', '#00f2fe'] });
         });
 
         function closeModal() {
